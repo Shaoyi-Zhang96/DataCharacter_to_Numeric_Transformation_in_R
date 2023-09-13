@@ -1,4 +1,7 @@
 # DataCharacter_to_Numeric_Transformation_in_R
+
+Works in situations when you have a large dataset with continuous variables, character variables (yes/no, cold/cool/hot, etc). This saves you the time of recoding the character variables into categorical/ordinal variables for each column.
+
 R Script: Convert character columns to numeric categories. Skips continuous variables. 
 Converts "none", "NA", "missing", "blank" to 0. Other categories start from 1. Perfect for quick ML data prep.
 
