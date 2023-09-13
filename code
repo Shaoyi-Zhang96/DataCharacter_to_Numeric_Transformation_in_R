@@ -1,0 +1,25 @@
+data <- read.csv("path/to/your/file.csv")
+
+# Get the names of columns which are categorical
+categorical_columns <- names(data)[sapply(data, function(col) is.character(col) || is.factor(col))]
+
+zero_values <- c("None", "missing", "N/A", "")
+
+for(column_name in categorical_columns) {
+  # Extract the unique non-NA values
+  unique_values <- na.omit(unique(data[[column_name]]))
+  
+  # Create a numeric mapping with 'None', 'missing', 'N/A' and blank mapped to 0
+  mapping <- setNames(1:length(unique_values), unique_values)
+  for(zero_val in zero_values) {
+    if (zero_val %in% unique_values) {
+      # Adjust the mapping values
+      non_zero_values <- setdiff(unique_values, zero_val)
+      mapping[non_zero_values] <- 2:length(non_zero_values) + 1
+      mapping[zero_val] <- 0
+    }
+  }
+  
+  # Replace values in the column based on the mapping
+  data[[column_name]] <- as.integer(mapping[data[[column_name]]])
+}
