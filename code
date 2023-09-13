@@ -1,3 +1,7 @@
+#This code does not have a limit for columns, but take note that you will have to modify the first line slightly depending on the type of data you are reading. 
+If your missing data is represented other than "None", "missing", "N/A", "", you can add your missing value representation into line 9. 
+Otherwise you can directly copy and past this code. if it doesn't run, send me an issue request. 
+
 data <- read.csv("path/to/your/file.csv")
 
 # Get the names of columns which are categorical
